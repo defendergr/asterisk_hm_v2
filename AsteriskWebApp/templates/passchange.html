@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+Λογαριασμός Χρήστη
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="container login-container mt-5">
+    <div class="row d-flex justify-content-center">
+    <div class="col-md-6 login-form-1">
+        <a href="/account/" class="btn btn-success mb-3">Πίσω</a>
+        <h3>Ενημέρωση λογαριασμού</h3>
+
+        <img class="rounded-circle navbar-profile-image" src="{{ url_for('static', filename='images/profiles_images/' + current_user.profile_image) }}" alt="{{ current_user.username }}" data-holder-rendered="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ current_user.username }}">
+
+
+        <form action="#" method="POST" enctype="multipart/form-data">
+
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                {{ form.old_password.label(class="form-label") }}
+                {{ form.old_password(class="form-control", type="password") }}
+                <div id="old_passwordHelp" class="form-text">
+                    Παρακαλώ δώστε Password
+                </div>
+                {% if form.old_password.errors %}
+                <ul class="errors">
+                    {% for error in form.old_password.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", type="password") }}
+                <div id="passwordHelp" class="form-text">
+                    Παρακαλώ δώστε Password
+                </div>
+                {% if form.password.errors %}
+                <ul class="errors">
+                    {% for error in form.password.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.password2.label(class="form-label") }}
+                {{ form.password2(class="form-control", type="password") }}
+                <div id="password2Help" class="form-text">
+                    Παρακαλώ δώστε Password
+                </div>
+                {% if form.password2.errors %}
+                <ul class="errors">
+                    {% for error in form.password2.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+
+        </form>
+    </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+<footer class="page-footer font-small stylish-color-dark pt-1 mt-auto fixed-bottom opacity-95">
+    <div class="footer-copyright py-1 text-center">
+         &copy;
+    <span id="copyright">
+        <script>
+            var year = new Date().getFullYear();
+            var birth_year = '2023';
+            if (year <= birth_year) {
+            var display_year = new Date().getFullYear();
+            }
+            else {
+            var display_year = birth_year+' - '+new Date().getFullYear();
+            };
+            document.getElementById('copyright').appendChild(document.createTextNode(display_year));
+        </script>
+    </span>
+        by Defender
+    </div>
+  </footer>

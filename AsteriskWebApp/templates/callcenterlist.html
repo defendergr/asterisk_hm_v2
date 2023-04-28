@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+Τηλεφωνικά κέντρα
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="row d-flex justify-content-center">
+
+    {% for cc in cclist %}
+
+
+
+<div class="card col-md-3 mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ cc.name }}</b></h5>
+    <a class="btn btn-primary btn-sm m-1 mb1" href="{{ url_for('editcallcenter', id=cc.id) }}">Αλλαγή</a>
+    <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{cc.id}}">Διαγραφή</button>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal{{cc.id}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Διαγραφή τηλεφωνικού κέντρου</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          Θέλετε να διαγράψετε αυτό το τηλεφωνικό κέντρο <b>{{ cc.name }}</b>;
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Όχι</button>
+        <form action="{{ url_for('deletecallcenter', id=cc.id) }}" method="POST">
+          <input type="submit" class="btn btn-danger" value="Διαγραφή">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+    {% endfor %}
+
+
+</div>
+
+{% endblock content %}

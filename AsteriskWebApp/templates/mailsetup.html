@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}
+Καταχώριση email server
+{% endblock title %}
+
+{% block content %}
+
+<div class="container login-container mt-5">
+    <div class="row d-flex justify-content-center">
+    <div class="col-md-6 login-form-1">
+        <a href="/" class="btn btn-success mb-3">Πίσω</a>
+        <h3>Email setup</h3><hr>
+        <form method="POST">
+
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                {{ form.mail_server.label(class="form-label") }}
+                {{ form.mail_server(class="form-control") }}
+                <div id="mail_serverHelp" class="form-text">
+                    Παρακαλώ δώστε το όνομα του email server
+                </div>
+                {% if form.mail_server.errors %}
+                <ul class="errors">
+                    {% for error in form.mail_server.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.mail_port.label(class="form-label") }}
+                {{ form.mail_port(class="form-control") }}
+                <div id="mail_portHelp" class="form-text">
+                    Δώστε το Port
+                </div>
+                {% if form.mail_port.errors %}
+                <ul class="errors">
+                    {% for error in form.mail_port.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.tls_ssl.label(class="form-label") }}
+                {{ form.tls_ssl(class="form-chooses") }}
+                <div id="tls_sslHelp" class="form-text">
+                    Παρακαλώ διαλέξτε security
+                </div>
+                {% if form.tls_ssl.errors %}
+                <ul class="errors">
+                    {% for error in form.tls_ssl.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control") }}
+                <div id="emailHelp" class="form-text">
+                    Παρακαλώ δώστε email
+                </div>
+                {% if form.email.errors %}
+                <ul class="errors">
+                    {% for error in form.email.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", type="password") }}
+                <div id="passwordHelp" class="form-text">
+                    Παρακαλώ δώστε Password
+                </div>
+                {% if form.password.errors %}
+                <ul class="errors">
+                    {% for error in form.password.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+
+
+            <div class="mb-3">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+
+        </form>
+    </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

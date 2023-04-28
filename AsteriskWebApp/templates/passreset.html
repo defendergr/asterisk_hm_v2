@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+Είσοδος
+{% endblock title %}
+
+{% block content %}
+
+<div class="container login-container mt-5">
+    <div class="row d-flex justify-content-center">
+    <div class="col-md-4 login-form-1">
+        <h3>Reset Password</h3>
+        <form method="POST">
+
+            {{ form.csrf_token() }}
+
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control") }}
+                <div id="emailHelp" class="form-text">
+                    Παρακαλώ δώστε email
+                </div>
+                {% if form.email.errors %}
+                <ul class="errors">
+                    {% for error in form.email.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+
+        </form>
+    </div>
+    </div>
+</div>
+
+{% endblock content %}

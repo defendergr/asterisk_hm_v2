@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+Καταχώριση τηλεφωνικού κέντρου
+{% endblock title %}
+
+{% block content %}
+
+<div class="container login-container mt-5">
+    <div class="row d-flex justify-content-center">
+    <div class="col-md-6 login-form-1">
+        <a href="/callcenterlist/" class="btn btn-success mb-3">Πίσω</a>
+        <h3>Σελίδα Καταχώρισης τηλεφωνικού κέντρου</h3><hr>
+        <form method="POST">
+
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                {{ form.name.label(class="form-label") }}
+                {{ form.name(class="form-control") }}
+                <div id="nameHelp" class="form-text">
+                    Παρακαλώ δώστε το όνομα του τηλεφωνικού κέντρου
+                </div>
+                {% if form.name.errors %}
+                <ul class="errors">
+                    {% for error in form.name.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.ip.label(class="form-label") }}
+                {{ form.ip(class="form-control") }}
+                <div id="ipHelp" class="form-text">
+                    Παρακαλώ δώστε την IP του τηλεφωνικού κέντρου
+                </div>
+                {% if form.ip.errors %}
+                <ul class="errors">
+                    {% for error in form.ip.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control") }}
+                <div id="usernameHelp" class="form-text">
+                    Παρακαλώ δώστε username
+                </div>
+                {% if form.username.errors %}
+                <ul class="errors">
+                    {% for error in form.username.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", type="password") }}
+                <div id="passwordHelp" class="form-text">
+                    Παρακαλώ δώστε Password
+                </div>
+                {% if form.password.errors %}
+                <ul class="errors">
+                    {% for error in form.password.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.port.label(class="form-label") }}
+                {{ form.port(class="form-control") }}
+                <div id="portHelp" class="form-text">
+                    Δώστε το Port του τηλεφωνικού κέντρου στην περίπτωση που είναι διαφορετικό απο το default
+                </div>
+                {% if form.port.errors %}
+                <ul class="errors">
+                    {% for error in form.port.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+
+        </form>
+    </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

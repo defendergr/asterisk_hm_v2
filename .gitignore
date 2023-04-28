@@ -1,0 +1,7 @@
+venv
+instance
+.idea
+*.log
+*.db
+hangout_log.json
+migrations

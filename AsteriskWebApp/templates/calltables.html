@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}
+Asterisk HM
+{% endblock title %}
+
+{% block content %}
+
+<div class="col-md-12">
+<div class="table-responsive">
+<table class="table align-middle bg-white mb-5">
+  <thead class="table-info">
+    <tr>
+      <th class="col-1">Caller ID</th>
+      <th class="col-1">Caller Name</th>
+      <th class="col-2">Call Type</th>
+      <th class="col-1">Receiver ID</th>
+      <th class="col-1">Receiver Name</th>
+      <th class="col-1">Channel Status</th>
+      <th class="col-2">App Data / Channel</th>
+      <th class="col-1">Duration</th>
+      <th class="col-2">End Call's</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for call in phone %}
+  {% if call.ApplicationData|length %}
+    {% set ip = call.ApplicationData.split(',') %}
+  {% else %}
+    {% set ip = ' ' %}
+  {% endif %}
+                {% if call.CallerIDNum|length %}
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{ call.CallerIDNum }}</p>
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <p class="fw-normal mb-1">{{ call.CallerIDName }}</p>
+      </td>
+
+      <td>
+        <p class="text-muted mb-0">
+          {% if call.Application == 'AppDial' %}
+            {% set cp = 'Εισερχόμενη από:' %}
+          {% else %}
+            {% set cp = call.Application %}
+          {% endif %}
+          {{cp}}
+        </p>
+      </td>
+
+      <td>
+        <p class="fw-bold mb-1">{{call.ConnectedLineNum}}</p>
+      </td>
+
+      <td>
+        <p class="text-muted mb-0">{{call.ConnectedLineName}}</p>
+      </td>
+
+      <td>
+         <span class="badge badge-success rounded-pill d-inline">{{ call.ChannelStateDesc }}</span>
+      </td>
+
+      <td>
+         <span class="text-muted mb-0">
+           {%- if ip[0] == '(Outgoing Line)' -%}
+              {% set ip = call.Channel %}
+              {{ ip }}
+           {% else %}
+              {% set cl = ip[0].split('&') %}
+              {% for app in cl %}
+              {{ app }}
+              {% endfor %}
+
+           {% endif %}
+         </span>
+      </td>
+
+      <td>
+        <p class="text-muted mb-0">{{call.Duration}}</p>
+      </td>
+
+      <td>
+        {% set chn = call.Channel.split('/') %}
+        <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal{{call.CallerIDNum}}">End Call</button>
+        <div class="modal fade" id="deleteModal{{call.CallerIDNum}}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">End Call</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  Θέλετε να τερματίσετε αυτή την κλήση <b>{{ call.CallerIDNum }}</b>;
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Όχι</button>
+                <form action="{{ url_for('endcall', channel1=chn[0], channel2=chn[1], callcenter=callcenter) }}" method="GET">
+                  <input type="submit" class="btn btn-danger" value="End Call">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </td>
+
+    </tr>
+
+  {% else %}
+    <br>
+    {% endif %}
+  {% endfor %}
+
+  </tbody>
+</table>
+</div>
+</div>
+        {{ err }}
+
+
+<script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 30000);
+</script>
+
+
+
+{% endblock content %}

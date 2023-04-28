@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Asterisk HM
+{% endblock title %}
+
+{% block content %}
+
+<div class="col-xl-4 mt-5">
+    <div class="card l-bg-blue-dark">
+        <div class="card-statistic-3 p-4">
+            <div class="mb-4">
+                <h5 class="card-title mb-0">{{msg[0]}}</h5>
+            </div>
+            <div class="row align-items-center mb-2 d-flex">
+                <h3 class="d-flex align-items-center mb-0">
+                    {{msg[1]}}
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
