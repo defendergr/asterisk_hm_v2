@@ -1,7 +1,9 @@
 if [[ -e venv ]]; then
+  clear
   source ./venv/bin/activate
   waitress-serve AsteriskWebApp:app
 else
+  clear
   echo 'Creating virtual environment...'
   python3.11 -m venv venv
   clear
@@ -16,4 +18,5 @@ else
   clear
   echo 'Starting server...'
   waitress-serve AsteriskWebApp:app
+  clear
 fi
