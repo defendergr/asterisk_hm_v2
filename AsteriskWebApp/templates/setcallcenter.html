@@ -91,6 +91,21 @@
             </div>
 
             <div class="mb-3">
+                {{ form.hangup_time.label(class="form-label") }}
+                {{ form.hangup_time(class="form-control") }}
+                <div id="hangup_timeHelp" class="form-text">
+                    Ρυθμίστε τον αυτόματο τερματισμό κλήσης σε λεπτά ή βάλτε 0 για απενεργοποίηση.
+                </div>
+                {% if form.hangup_time.errors %}
+                <ul class="errors">
+                    {% for error in form.hangup_time.errors %}
+                   <li class="alert text-danger">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
                 {{ form.submit(class="btn btn-primary") }}
             </div>
 

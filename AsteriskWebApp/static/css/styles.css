@@ -71,3 +71,8 @@ nav {
     background: linear-gradient(to right, #373b44, #f44242) !important;
     color: #fff;
 }
+
+
+.fs {
+    font-size: 0.9rem;
+}
