@@ -1,5 +1,7 @@
-
-if ! [[ -e venv ]]; then
+if [[ -e venv ]]; then
+  source ./venv/bin/activate
+  waitress-serve AsteriskWebApp:app
+else
   echo 'Creating virtual environment...'
   python3.11 -m venv venv
   clear
@@ -7,8 +9,11 @@ if ! [[ -e venv ]]; then
   source ./venv/bin/activate
   clear
   echo 'Installing requirements...'
-pip install -r requirements.txt
+  pip install -r requirements.txt
+  clear
+  echo 'Installing db'
+  python install_db.pyc
+  clear
+  echo 'Starting server...'
+  waitress-serve AsteriskWebApp:app
 fi
-source ./venv/bin/activate
-python install_db.pyc
-waitress-serve AsteriskWebApp:app
