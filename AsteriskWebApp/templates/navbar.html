@@ -47,6 +47,9 @@
             <li>
               <a class="dropdown-item dm"  data-bs-toggle="modal" data-bs-target="#autoHangout{{ minutes }}" href="#">Set Auto Hangup Time</a>
             </li>
+            <li>
+              <a class="dropdown-item dm"  data-bs-toggle="modal" data-bs-target="#recallkey" href="#">Recall Key</a>
+            </li>
             <li><hr class="dropdown-divider" /></li>
             {% endif %}
             <li>
@@ -79,8 +82,27 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Άκυρο</button>
-<!--                <form action="{{ url_for('setCallMaxDuration') }}" method="POST">-->
                   <input type="submit" class="btn btn-success" value="Αποθήκευση">
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+<div class="modal fade" id="recallkey" tabindex="-1" aria-labelledby="recallkeyLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="recallkeyLabel">Recall Key</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{ url_for('recall') }}" method="POST">
+              <div class="modal-body">
+              Είστε σίγουρος οτι θελετε να ανακαλέσετε το register key;
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Όχι</button>
+                  <input type="submit" class="btn btn-success" value="Ναι">
               </div>
               </form>
             </div>
