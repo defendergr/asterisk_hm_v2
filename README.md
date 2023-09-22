@@ -1,5 +1,5 @@
 # Asterisk Hungup Manager v2
-### &1F517 [Gallery](https://defendergr.github.io/ast_site/) 
+### &#1F517 [Gallery](https://defendergr.github.io/ast_site/) 
 
 ## Instalation
 >1) install python 3.11 (and python-venv only Linux)
